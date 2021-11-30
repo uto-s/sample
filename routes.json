@@ -1,0 +1,33 @@
+﻿{
+    "routes": [
+        {
+            "route": "/login",
+            "serve": "/.auth/login/github"
+        },
+        {
+            "route": "/.auth/login/facebook",
+            "statusCode": "401"
+        },
+        {
+            "route": "/member/*",
+            "serve": "/member/index.html",
+            "allowedRoles": [
+                "reader",
+                "contributor"
+            ]
+        },
+        {
+            "route": "/",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        }
+    ],
+    "platformErrorOverrides": [
+        {
+            "errorType": "Unauthenticated",
+            "statusCode": "302",
+            "serve": "/index.html"
+        }
+    ]
+}
